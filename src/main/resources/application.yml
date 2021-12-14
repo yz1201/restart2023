@@ -1,0 +1,21 @@
+server:
+  port: 40923
+
+spring:
+  application:
+    name: service-restart
+  # DataSource Config
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://47.94.4.93:3306/db_mirror?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+    username: mysql
+    password: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  typeAliasesPackage: cn.dbdj1201.restart2022.entity
+
