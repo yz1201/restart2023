@@ -19,3 +19,7 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
   typeAliasesPackage: cn.dbdj1201.restart2022.entity
 
+test:
+  nickName: test
+  age: 278
+  info: test info
