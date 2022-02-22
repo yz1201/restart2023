@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * @Author: yz1201
@@ -27,6 +31,13 @@ public class HelloController {
     public Object helloUsers(@RequestParam Long id){
         TestEntity testEntity = this.testService.selectUserById(id);
         return testEntity;
+    }
+
+    @GetMapping("/test")
+    public Object test(){
+        Map<String,String> map = new HashMap<>();
+        map.put("path",Paths.get("/home/dbdj1201/test").toString());
+        return map;
     }
 
 
