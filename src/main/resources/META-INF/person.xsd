@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns="http://www.dbdj1201.com/schema/person"
+            targetNamespace="http://www.dbdj1201.com/schema/person"
+            elementFormDefault="qualified">
+
+    <!--    <xsd:element name="person">-->
+    <!--        <xsd:complexType>-->
+    <!--            <xsd:attribute name="id" type="xsd:string"/>-->
+    <!--            <xsd:attribute name="name" type="xsd:string"/>-->
+    <!--            <xsd:attribute name="age" type="xsd:int"/>-->
+    <!--            <xsd:attribute name="address" type="xsd:string"/>-->
+    <!--        </xsd:complexType>-->
+    <!--    </xsd:element>-->
+    <xs:element name="person">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="id" type="xs:integer" use="required"/>
+                    <xs:attribute name="name" type="xs:string" use="required"/>
+                    <xs:attribute name="age" type="xs:integer" use="required"/>
+                    <xs:attribute name="address" type="xs:string" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+
+
+</xs:schema>

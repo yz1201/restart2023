@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:testPerson="http://www.dbdj1201.com/schema/person"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.dbdj1201.com/schema/person
+        http://www.dbdj1201.com/schema/person.xsd">
+
+    <!-- 在这里加入内容 -->
+    <!--    <bean id="person" class="cn.dbdj1201.restart2022.entity.Person">-->
+    <!--        <property name="name" value="ysj"/>-->
+    <!--        <property name="age" value="28"/>-->
+    <!--        <property name="address" value="he nan"/>-->
+    <!--    </bean>-->
+
+    <testPerson:person id="123" address="按啥烧烤大师的" age="24" name="testPerson">
+
+    </testPerson:person>
+</beans>
