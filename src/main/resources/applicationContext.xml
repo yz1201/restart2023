@@ -14,7 +14,5 @@ http://www.dbdj1201.com/schema/person
     <!--        <property name="address" value="he nan"/>-->
     <!--    </bean>-->
 
-    <testPerson:person id="123" address="按啥烧烤大师的" age="24" name="testPerson">
-
-    </testPerson:person>
+    <testPerson:person id="123" address="按啥烧烤大师的" age="24" name="testPerson"/>
 </beans>
