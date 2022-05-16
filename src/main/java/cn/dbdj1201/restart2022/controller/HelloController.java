@@ -34,8 +34,9 @@ public class HelloController {
     }
 
     @GetMapping("/test")
-    public Object test(){
+    public Object test(String content){
         Map<String,String> map = new HashMap<>();
+        map.put("content",content+" hei hei");
         map.put("path",Paths.get("/home/dbdj1201/test").toString());
         return map;
     }
