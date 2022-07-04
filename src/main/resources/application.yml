@@ -15,6 +15,11 @@ spring:
     restart:
       enabled: true  #设置开启热部署
       additional-paths: src/main/java
+
+  redis:
+    host: 47.94.4.93
+    port: 6379
+    password: dbdj1201
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
   typeAliasesPackage: cn.dbdj1201.restart2022.entity
