@@ -70,7 +70,9 @@ public class TestController {
         QueryWrapper<TestEntity> queryWrapper = new QueryWrapper<>();
         String ageStr = "age";
         queryWrapper.ge(ageStr, minAge).le(ageStr, maxAge);
-        return this.testUserMapper.selectList(queryWrapper);
+        List<TestEntity> testEntities = this.testUserMapper.selectList(queryWrapper);
+        System.out.println(testEntities);
+        return testEntities;
     }
 
     @GetMapping("/testUser")
