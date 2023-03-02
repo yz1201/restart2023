@@ -1,0 +1,83 @@
+protected final SourceClass doProcessConfigurationClass(
+        ConfigurationClass configClass, SourceClass sourceClass, Predicate<String> filter)
+        throws IOException {
+    if (configClass.getMetadata().isAnnotated(Component.class.getName())) {
+        // 1.内部类  这一步看看有没有内部类，一般不咋用
+        processMemberClasses(configClass, sourceClass, filter);
+    }
+
+    // 2.@PropertySource 这一步解析@PropertySource注解，更改配置文件位置时会使用，一般使用默认位置，不咋更改
+    for (AnnotationAttributes propertySource : AnnotationConfigUtils.attributesForRepeatable(
+            sourceClass.getMetadata(), PropertySources.class,
+            org.springframework.context.annotation.PropertySource.class)) {
+        if (this.environment instanceof ConfigurableEnvironment) {
+            processPropertySource(propertySource);
+        }
+        else {
+            logger.info("Ignoring @PropertySource annotation on [" + sourceClass.getMetadata().getClassName() +
+                    "]. Reason: Environment must implement ConfigurableEnvironment");
+        }
+    }
+
+    // 3.@ComponentScan 这一步就很重要了，解析@ComponentScan注解
+    Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(
+            sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);
+    if (!componentScans.isEmpty() &&
+            !this.conditionEvaluator.shouldSkip(sourceClass.getMetadata(), ConfigurationPhase.REGISTER_BEAN)) {
+        for (AnnotationAttributes componentScan : componentScans) {
+            // 开始扫描，把@ComponentScan指定包下的@Component类全部扫描出来
+            Set<BeanDefinitionHolder> scannedBeanDefinitions =
+                    this.componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
+            // 把所有扫描到的beanClass递归解析，所以我们也可以加多个@Configuration类
+            for (BeanDefinitionHolder holder : scannedBeanDefinitions) {
+                BeanDefinition bdCand = holder.getBeanDefinition().getOriginatingBeanDefinition();
+                if (bdCand == null) {
+                    bdCand = holder.getBeanDefinition();
+                }
+                //判断是不是ConfigurationClass 带@Configuration注解和@Component注解都算
+                if (ConfigurationClassUtils.checkConfigurationClassCandidate(bdCand, this.metadataReaderFactory)) {
+                    // 解析
+                    parse(bdCand.getBeanClassName(), holder.getBeanName());
+                }
+            }
+        }
+    }
+
+    // 4.@Import 解析@Import注解
+    processImports(configClass, sourceClass, getImports(sourceClass), filter, true);
+
+    // 5.@ImportResource解析@ImportResource解析
+    AnnotationAttributes importResource =
+            AnnotationConfigUtils.attributesFor(sourceClass.getMetadata(), ImportResource.class);
+    if (importResource != null) {
+        String[] resources = importResource.getStringArray("locations");
+        Class<? extends BeanDefinitionReader> readerClass = importResource.getClass("reader");
+        for (String resource : resources) {
+            String resolvedResource = this.environment.resolveRequiredPlaceholders(resource);
+            configClass.addImportedResource(resolvedResource, readerClass);
+        }
+    }
+
+    // 6.@Bean 解析带有@Bean注解的方法，加入到configClass的beanMethods属性中
+    Set<MethodMetadata> beanMethods = retrieveBeanMethodMetadata(sourceClass);
+    for (MethodMetadata methodMetadata : beanMethods) {
+        configClass.addBeanMethod(new BeanMethod(methodMetadata, configClass));
+    }
+
+    // 6.接口@Bean 解析实现的接口中带有@Bean注解的默认方法，加入到configClass的beanMethods属性中
+    processInterfaces(configClass, sourceClass);
+
+    // 7.父类 如果有父类返回父类，以继续解析
+    if (sourceClass.getMetadata().hasSuperClass()) {
+        String superclass = sourceClass.getMetadata().getSuperClassName();
+        if (superclass != null && !superclass.startsWith("java") &&
+                !this.knownSuperclasses.containsKey(superclass)) {
+            this.knownSuperclasses.put(superclass, configClass);
+            // Superclass found, return its annotation metadata and recurse
+            return sourceClass.getSuperClass();
+        }
+    }
+
+    // 没有父类，解析结束
+    return null;
+}

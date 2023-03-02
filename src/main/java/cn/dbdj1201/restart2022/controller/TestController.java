@@ -88,4 +88,11 @@ public class TestController {
         queryWrapper.ge(ageStr, minAge).le(ageStr, maxAge);
         return this.testUserMapper.selectList(queryWrapper);
     }
+
+    @PostMapping("addUser")
+    public String addUser(@RequestBody TestEntity testEntity){
+        log.info("新增对象{}", testEntity);
+        int insert = this.testUserMapper.insert(testEntity);
+        return "新增对象个数" + insert;
+    }
 }

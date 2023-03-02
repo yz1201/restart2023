@@ -15,4 +15,7 @@ public class Test20220309 {
         Person person = ac.getBean(Person.class);
         System.out.println(person);
     }
+
+
+
 }

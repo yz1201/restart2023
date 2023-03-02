@@ -3,6 +3,7 @@ package cn.dbdj1201.restart2022;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 
@@ -12,6 +13,7 @@ public class Restart2022Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Restart2022Application.class, args);
+
 
 //        String test = "ssss\n" +
 //                "asdasd";
