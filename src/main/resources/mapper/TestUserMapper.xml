@@ -5,4 +5,8 @@
     <insert id="insertBatch">
 
     </insert>
+
+    <select id="selectTime" resultType="java.lang.String">
+        select now();
+    </select>
 </mapper>

@@ -12,5 +12,8 @@ import java.util.List;
 public interface TestUserMapper extends BaseMapper<TestEntity> {
 
     int insertBatch(List<TestEntity> entities);
+    String selectTime();
+
+
 
 }

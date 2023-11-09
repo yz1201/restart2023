@@ -27,4 +27,9 @@ public class TestServiceImpl implements ITestService {
     public TestEntity selectUserById(Long id) {
         return this.testMapper.selectById(id);
     }
+
+    @Override
+    public String selectTime() {
+        return this.testMapper.selectTime();
+    }
 }

@@ -14,4 +14,5 @@ public interface ITestService {
 
     TestEntity selectUserById(Long id);
 
+    String selectTime();
 }

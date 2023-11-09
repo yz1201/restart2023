@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.nio.file.Paths;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -126,5 +128,34 @@ public class TestController {
         resMap.put("resMsg", res ? "恭喜恭喜":"444");
         resMap.put("result", "");
         return JSON.toJSONString(resMap);
+    }
+
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        int len = 100000;
+        for (int i = 0; i < len; i++) {
+            list.add(i);
+        }
+
+        List<Integer> list1 = list.subList(0, 1000);
+        System.out.println(list1);
+
+
+        double d = 15000000d;
+        System.out.println((double) d);
+
+        Double d1 = new Double(d);
+        System.out.println(d1);
+        BigDecimal bigDecimal = new BigDecimal(d);
+
+        System.out.println(bigDecimal.doubleValue());
+        NumberFormat instance = NumberFormat.getInstance();
+        instance.setGroupingUsed(false);
+        System.out.println(instance.format(d));
+
+        double num = 150000000d;
+
+
+
     }
 }
