@@ -15,7 +15,6 @@ spring:
     restart:
       enabled: true  #设置开启热部署
       additional-paths: src/main/java
-
   redis:
     host: 47.94.4.93
     port: 6379
@@ -23,8 +22,12 @@ spring:
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
   typeAliasesPackage: cn.dbdj1201.restart2022.entity
-
-test:
-  nickName: test
-  age: 278
-  info: test info
+baidu:
+  translation:
+    appId: 20231110001875793
+    secret: 04yt2_Ag734DIpFvdl7B
+    url: https://fanyi-api.baidu.com/api/trans/vip/translate
+    salt: 123
+api:
+  aphorisms:
+    url: https://api.quotable.io/random
