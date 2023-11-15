@@ -43,6 +43,7 @@ public class FreeAphorismsServiceImpl implements FreeAphorismsService {
                 result = EntityUtils.toString(response.getEntity(), "utf-8");
                 Aphorisms aphorisms = JSON.parseObject(result, Aphorisms.class);
                 aphorismsText = aphorisms.getContent();
+                log.info("查询名言警句成功{}", result);
             }
         } catch (Exception e) {
             log.error(e.getMessage());

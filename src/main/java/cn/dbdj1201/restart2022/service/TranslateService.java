@@ -1,5 +1,6 @@
 package cn.dbdj1201.restart2022.service;
 
+import cn.dbdj1201.restart2022.vto.Translation;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,5 +10,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface TranslateService {
 
-    public String translate();
+    public Translation translate();
 }
