@@ -31,3 +31,6 @@ baidu:
 api:
   aphorisms:
     url: https://api.quotable.io/random
+
+#snow-flake:
+#  work-id

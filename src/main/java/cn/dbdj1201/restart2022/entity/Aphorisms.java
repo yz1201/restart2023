@@ -1,5 +1,7 @@
 package cn.dbdj1201.restart2022.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName("t_aphorisms")
 public class Aphorisms {
 
     /*
@@ -30,6 +33,7 @@ public class Aphorisms {
   "dateModified": "2023-04-14"
 }
      */
+    @TableId("id")
     private String _id;
     private String content;
     private String author;

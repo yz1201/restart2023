@@ -37,8 +37,7 @@ public class HelloController {
 
     @GetMapping("/user")
     public Object helloUsers(@RequestParam Long id) {
-        TestEntity testEntity = this.testService.selectUserById(id);
-        return testEntity;
+        return this.testService.selectUserById(id);
     }
 
     @GetMapping("/test")
