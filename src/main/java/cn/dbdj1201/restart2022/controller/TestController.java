@@ -1,6 +1,6 @@
 package cn.dbdj1201.restart2022.controller;
 
-import cn.dbdj1201.hellospringbootstarter.service.TestService;
+//import cn.dbdj1201.hellospringbootstarter.service.TestService;
 import cn.dbdj1201.restart2022.entity.TestEntity;
 import cn.dbdj1201.restart2022.mapper.TestUserMapper;
 import cn.dbdj1201.restart2022.service.ITestService;
@@ -43,8 +43,8 @@ public class TestController {
     @Autowired
     private TestMyService testMyService;
 
-    @Autowired
-    private TestService service;
+//    @Autowired
+//    private TestService service;
 
     @GetMapping("/listAll")
     public List<TestEntity> selectAllUsers() {
@@ -87,10 +87,10 @@ public class TestController {
         return testEntities;
     }
 
-    @GetMapping("/testUser")
-    public String getUserByAge(String content) {
-        return this.service.getWelcomeInfo(content);
-    }
+//    @GetMapping("/testUser")
+//    public String getUserByAge(String content) {
+//        return this.testService.getWelcomeInfo(content);
+//    }
 
     @PostMapping("executeQuery/{minAge}/{maxAge}")
     public List<TestEntity> executeQuery(@PathVariable String minAge, @PathVariable String maxAge) {
@@ -143,19 +143,24 @@ public class TestController {
 
         double d = 15000000d;
         System.out.println((double) d);
-
-        Double d1 = new Double(d);
-        System.out.println(d1);
-        BigDecimal bigDecimal = new BigDecimal(d);
-
-        System.out.println(bigDecimal.doubleValue());
-        NumberFormat instance = NumberFormat.getInstance();
-        instance.setGroupingUsed(false);
-        System.out.println(instance.format(d));
-
-        double num = 150000000d;
-
-
-
+//
+//        Double d1 = new Double(d);
+//        System.out.println(d1);
+//        BigDecimal bigDecimal = new BigDecimal(d);
+//
+//        System.out.println(bigDecimal.doubleValue());
+//        NumberFormat instance = NumberFormat.getInstance();
+//        instance.setGroupingUsed(false);
+//        System.out.println(instance.format(d));
+//
+//        double num = 150000000d;
     }
+
+    @GetMapping("/testV1")
+    public String testV1() {
+        String s = "RGAPI-3f9b6eab-7c0e-4e3a-9dc3-b4eaa1725496";
+//        let summonerName_url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + API_key;
+        return "";
+    }
+
 }
